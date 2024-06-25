@@ -1,0 +1,52 @@
+*Heading
+* Preprint, echo=NO, model=NO, history=NO, contact=NO
+** Job name: main
+** unit = kN, m, s
+** --------------------Node--------------------
+*NODE, NSET=NALL
+*include, input=node.inp
+** --------------------Element--------------------
+*ELEMENT, TYPE=S3R, ELSET=ELT
+*include, input=elem_tri.inp
+*ELEMENT, TYPE=S4R, ELSET=ELQ
+*include, input=elem_quad.inp
+** --------------------Section--------------------
+*SHELL SECTION, elset=ELT, material=dumm
+0.003
+*SHELL SECTION, elset=ELQ, material=dumm
+0.003
+** --------------------Material--------------------
+*MATERIAL, NAME=dumm
+*ELASTIC
+2.0E+7, 0.2
+**--------------------Connector--------------------
+*include, input=hinge.inp
+**--------------------MPC--------------------
+*MPC
+*include, input=tie.inp
+** --------------------Boundary--------------------
+*BOUNDARY
+1486, 1
+1486, 3
+1576, 2
+1666, 1
+1666, 3
+1756, 2
+** --------------------Linear constraint--------------------
+*EQUATION
+2
+1576, 3, 1.0, 1756, 3, -1.0
+** --------------------Amplitude--------------------
+*Amplitude, name=AMP
+0, 0, 1.0, 1.0
+** --------------------Step--------------------
+*Step, name=Step1, nlgeom=YES, inc=1000
+*Static
+0.01, 1.0, 1e-10, 0.1
+*CLOAD, amplitude=AMP
+155, 1, 0.01
+965, 2, -0.01
+2225, 2, 0.01
+3215, 1, -0.01
+*Output, field, variable=ALL, frequency=1
+*End step
