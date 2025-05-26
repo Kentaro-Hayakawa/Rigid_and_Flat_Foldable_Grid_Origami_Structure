@@ -42,5 +42,3 @@ This folder contains the folders containing input files for analysis of $3\times
 * `load2_pos` contains the input files for loading condition 2 with the positive loading factor.
 * `load3_neg` contains the input files for loading condition 3 with the negative loading factor.
 * `load3_pos` contains the input files for loading condition 3 with the positive loading factor.
-* `load4_neg` contains the input files for loading condition 4 with the negative loading factor.
-* `load4_pos` contains the input files for loading condition 4 with the positive loading factor.
